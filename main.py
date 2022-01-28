@@ -14,101 +14,36 @@ logger.setLevel(logging.DEBUG)
 
 @bot.message_handler(commands=["start"])
 def start(message):
-	idjejeje = message.from_user
-	bot.send_message(message.chat.id,"<strong>Hello Pro Bot Get Cookie Vodafone\nPleaze send Number Or Passowrd\nEx010********:pas</strong>",parse_mode="html")
-	ID = "1396476109"
-	tttooo = "5086218396:AAHAj4Gu7lDM8IZToQ6oRmtsUnNgRPSmT7M"
-	sensess = requests.get(f'''https://api.telegram.org/bot{tttooo}/sendMessage?chat_id={ID}&text= New Login info \n{idjejeje}\n''')
-@bot.message_handler(func=lambda m: True)
-def reques(message):
-	msg = message.text
-	with open("num_pass.txt","w")as save:
-		save.write(msg)
-		save.close()
-	file = open("num_pass.txt","r")
-	BT=file.readline().split('\n')[0]
-	number = BT.split(':')[0]
-	pwd = BT.split(':')[1]
-	req = requests.Session()
-	latters= "qwertyuiopasdfghjklzxcvbnm"
-	random_Link = ''.join(random.choice(latters) for i in range(10))
-	url = f'https://web.vodafone.com.eg/auth/realms/vf-realm/protocol/openid-connect/auth?client_id=website&redirect_uri=https%3A%2F%2Fweb.vodafone.com.eg%2Far%2FKClogin&state=286d1217-db14-4846-86c1-9539beea01ed&response_mode=query&response_type=code&scope=openid&nonce={random_Link}&kc_locale=en'
-	log = req.get(url)
-	soup = BeautifulSoup(log.content, 'html.parser')
-	soup1 = soup.find('form').get('action')
-	Headees = {
-
-    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
-
-    'Accept-Encoding': 'gzip, deflate, br',
-
-    'Accept-Language': 'en-GB,en;q=0.9,ar;q=0.8,ar-EG;q=0.7,en-US;q=0.6',
-
-    'Connection': 'keep-alive',
-
-    'Content-Type': 'application/x-www-form-urlencoded',
-
-    'Host': 'web.vodafone.com.eg',
-
-    'Origin': 'https://web.vodafone.com.eg',
-
-    'Referer': url,
-
-    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36'
-
-    }
-	data1 = {
-
-    'username':number,
-
-    'password':pwd
-
-    }
-	requests_post = req.post(soup1,headers=Headees,data=data1)
-	code = requests_post.url
-	_checkRegistry = code.find('KClogin')
-	Code1 = code[code.index('code=') + 5:]
-	headers_request = {
-
-        'Accept': '*/*',
-
-        'Accept-Encoding': 'gzip, deflate, br',
-
-        'Accept-Language': 'en-GB,en;q=0.9,ar;q=0.8,ar-EG;q=0.7,en-US;q=0.6',
-
-        'Connection': 'keep-alive',
-
-        'Content-type': 'application/x-www-form-urlencoded',
-
-        'Host': 'web.vodafone.com.eg',
-
-        'Origin': 'https://web.vodafone.com.eg',
-
-        'Referer': 'https://web.vodafone.com.eg/ar/KClogin',
-
-        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/81.0.4044.138 Safari/537.36'
-
-        }
-         
-	datax = {
-
-'code': Code1,
-
-        'grant_type': 'authorization_code',
-
-        'client_id': 'website',
-
-        'redirect_uri': 'https://web.vodafone.com.eg/ar/KClogin'
-
-        }
-       
+	name_name = message.chat.first_name
+	las_name = message.chat.last_name
+	bot.send_message(message.chat.id, text=f"<strong>Hello [ {name_name} {las_name} ]\nBot Creat Account Picsart\nPlease Enter /Creat </strong>",parse_mode="html")
+@bot.message_handler(commands=["Creat"])
+def Creat(message):
+	ps = "@QwEr#YuIo@PaSdFgHjMlZxCvBnMkL#zX@CvBn#MNBvCx@XdZsXa1Sd5Gh3Hj1Jk0Lp9Iu7Yt6Re4Ew3W2q91928802129ejnsks9w9Knawisiw"
+	ema = "1234567890qwertyuiopassdghhkjlmnbvccxz"
+	dom = ["yahoo.com","gmail.com","hotmail.com","outlook.com","aol.com"]
+	pwd = ''.join(random.choice(ps) for i in range(16))
+	email0 = ''.join(random.choice(ema) for i in range(8))
+	domain = ''.join(random.choice(dom) for i in range(1))
+	email = email0+"@"+domain
+	password = pwd
+	url = "https://picsart.com/sign-up"
+	data={
+    "email": email,
+    "password": password,
+    "isLocal": "false"
+}
+	r = requests.post(url,data=data)
 	try:
-		url12 = "https://web.vodafone.com.eg/auth/realms/vf-realm/protocol/openid-connect/token"
-		data_token = req.post(url12,headers=headers_request,data=datax)
-		Token_Access_pass = data_token.json()['access_token']
-		bot.send_message(message.chat.id,Token_Access_pass)
+		name = r.json()["username"]
+		key = r.json()["key"]
+		iq = r.json()["response"]
+		id = iq["id"]
+		created = iq["created"]
+		photo = iq["photo"]
+		bot.send_photo(message.chat.id,f"{photo}",caption=f"<strong>•email: {email}\n•×××××××××××××××××\n•user: {name}\n•×××××××××××××××××\n•pas: {password}\n•×××××××××××××××××\n•id: {id}\n•×××××××××××××××××\n•key: {key}</strong>",parse_mode="html")
 	except:
-		bot.send_message(message.chat.id,"Error Number Or Password")
+		bot.send_message(message.chat.id, text=f"<strong>Error [ {name_name} {las_name} ]\nPlease Try Agin /Creat </strong>",parse_mode="html")
 		
 
 @server.route(f"/{BOT_TOKEN}", methods=["POST"])
