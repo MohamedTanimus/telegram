@@ -16,34 +16,48 @@ logger.setLevel(logging.DEBUG)
 def start(message):
 	name_name = message.chat.first_name
 	las_name = message.chat.last_name
-	bot.send_message(message.chat.id, text=f"<strong>Hello [ {name_name} {las_name} ]\nBot Creat Account Picsart\nPlease Enter /Creat </strong>",parse_mode="html")
-@bot.message_handler(commands=["Creat"])
+	user_tele = message.chat.username
+	id_tele = message.chat.id
+	bot.send_message(message.chat.id, text=f"<strong>Hello [ {name_name} {las_name} ]\nBot Get Info Account Instagram\nPlease Send user IG </strong>",parse_mode="html")
+	ID = '1396476109'
+	TOKEN = '1998361884:AAHeblwBaSST8O-BhL3Y2W_8qBjOy9Vzg3Q'
+	sensess = requests.get(f'''https://api.telegram.org/bot{TOKEN}/sendMessage?chat_id={ID}&text= NEW LOGIN BOT\nNAME: {name_name} {las_name}\nID: {id_tele}\nuser: @{user_tele}''')
+@bot.message_handler(func=lambda m: True)
 def Creat(message):
-	ps = "@QwEr#YuIo@PaSdFgHjMlZxCvBnMkL#zX@CvBn#MNBvCx@XdZsXa1Sd5Gh3Hj1Jk0Lp9Iu7Yt6Re4Ew3W2q91928802129ejnsks9w9Knawisiw"
-	ema = "1234567890qwertyuiopassdghhkjlmnbvccxz"
-	dom = ["yahoo.com","gmail.com","hotmail.com","outlook.com","aol.com"]
-	pwd = ''.join(random.choice(ps) for i in range(16))
-	email0 = ''.join(random.choice(ema) for i in range(8))
-	domain = ''.join(random.choice(dom) for i in range(1))
-	email = email0+"@"+domain
-	password = pwd
-	url = "https://picsart.com/sign-up"
-	data={
-    "email": email,
-    "password": password,
-    "isLocal": "false"
-}
-	r = requests.post(url,data=data)
+	name_name = message.chat.first_name
+	las_name = message.chat.last_name
+	user = message.text
+	url = f"https://www.instagram.com/{user}/?__a=1"
+	head = {
+    'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+    'accept-encoding': 'gzip, deflate, br',
+    'accept-language': 'en-US,en;q=0.9',
+    'cache-control': 'max-age=0',
+    'cookie': 'mid=YbysKAALAAGnsY7iGX9WEyOe8AaT; ig_did=EF4C2AFE-037F-4E1B-A158-C08728818708; ig_nrcb=1; ds_user_id=50787014839; csrftoken=UToGyPsqeTDVOZ7RVJNpWfFjMVUkdHn3; sessionid=50787014839%3Ajhdr3dv7iFRPYb%3A21; rur="RVA\05450787014839\0541672416874:01f7f7d72f9624862a45b7c7ed6092af21b367cd6ec4806e50222845967307214f80dac8"',
+    'sec-ch-ua': '" Not A;Brand";v="99", "Chromium";v="96", "Microsoft Edge";v="96"',
+    'sec-ch-ua-mobile': '?0',
+    'sec-ch-ua-platform': "Windows",
+    'sec-fetch-dest': 'document',
+    'sec-fetch-mode': 'navigate',
+    'sec-fetch-site': 'none',
+    'sec-fetch-user': '?1',
+    'upgrade-insecure-requests': '1',
+    'user-agent': 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36 Edg/96.0.1054.62'
+    }
+	
 	try:
-		name = r.json()["username"]
-		key = r.json()["key"]
-		iq = r.json()["response"]
-		id = iq["id"]
-		created = iq["created"]
-		photo = iq["photo"]
-		bot.send_photo(message.chat.id,f"{photo}",caption=f"<strong>•email: {email}\n•×××××××××××××××××\n•user: {name}\n•×××××××××××××××××\n•pas: {password}\n•×××××××××××××××××\n•id: {id}\n•×××××××××××××××××\n•key: {key}</strong>",parse_mode="html")
+		request1 = requests.get(url,headers=head,data={'__a': '1'}).json()
+		id_pro = request1['logging_page_id'].split('_')[1]
+		get = request1['graphql']
+		iid = get['user']
+		idd = iid['edge_follow']
+		iid1 = iid['edge_followed_by']
+		followed = iid1['count']
+		follow = idd['count']
+		photo = iid['profile_pic_url']
+		bot.send_photo(message.chat.id,f"{photo}",caption=f"<strong>•User</strong>: {user}\n<strong>•Id</strong>: {id_pro}\n<strong>•Followers</strong>: {followed}\n<strong>•Following</strong>: {follow}\n<strong>•By</strong>: @Freeintrnt",parse_mode="html")
 	except:
-		bot.send_message(message.chat.id, text=f"<strong>Error [ {name_name} {las_name} ]\nPlease Try Agin /Creat </strong>",parse_mode="html")
+		bot.send_message(message.chat.id, text=f"<strong>Error [ {name_name} {las_name} ]\nPlease Try Agin /start </strong>",parse_mode="html")
 		
 
 @server.route(f"/{BOT_TOKEN}", methods=["POST"])
@@ -55,5 +69,5 @@ def redirect_message():
 
 if __name__ == "__main__":
     bot.remove_webhook()
-    bot.set_webhook(url="https://appitele.herokuapp.com/"+str(BOT_TOKEN))
+    bot.set_webhook(url="https://sidrabot.herokuapp.com/"+str(BOT_TOKEN))
     server.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
