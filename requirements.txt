@@ -1,5 +1,6 @@
 pyTelegramBotAPI
 flask
+json
 user_agent
 requests
 bs4
